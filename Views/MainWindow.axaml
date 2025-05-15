@@ -1,0 +1,34 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:DiplomProject.ViewModels"
+        x:Class="DiplomProject.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="DiplomProject"
+        Width="800"
+        Height="600">
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+
+	<DockPanel>
+		<!-- Панель навигации -->
+		<StackPanel DockPanel.Dock="Left"
+                    Width="200"
+                    Background="#f0f0f0">
+			<Button Content="Главная"
+                    Command="{Binding SetCurrentTabCommand}"
+                    CommandParameter="{Binding Dashboard}"/>
+			<Button Content="Клиенты"
+                    Command="{Binding SetCurrentTabCommand}"
+                    CommandParameter="{Binding Clients}"/>
+			<Button Content="Заказы"
+                    Command="{Binding SetCurrentTabCommand}"
+                    CommandParameter="{Binding Orders}"/>
+		</StackPanel>
+
+		<!-- Контентная область -->
+		<ContentControl Content="{Binding CurrentTab}"/>
+	</DockPanel>
+
+</Window>
